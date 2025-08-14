@@ -31,18 +31,19 @@ public class Main {
         for(int i=0; i<arr.length-1;i++){
             //find the maximum of the remaining  array and swap it with correct index
             int lastIndex = arr.length-i-1;
-            int maximumIndex = getMaxIndex(arr);
+            int maximumIndex = getMaxIndex(arr,lastIndex);
             int temp = arr[maximumIndex];
-            arr[lastIndex]=temp;
             arr[maximumIndex]=arr[lastIndex];
+            arr[lastIndex]=temp;
+
 
         }
 
     }
 
-    public static int getMaxIndex(int [] arr){
+    public static int getMaxIndex(int [] arr, int lastIndex){
         int maxIndex=0;
-        for(int i=0; i<arr.length; i++){
+        for(int i=0; i<=lastIndex; i++){
             if(arr[i]>arr[maxIndex]){
                 maxIndex = i;
 
@@ -51,11 +52,15 @@ public class Main {
         return maxIndex;
     }
 
+public static void insertionSort(int [] arr){
 
+
+}
 
     public static void main(String[] args) {
-       int [] arr = {3,-1,5,4,-2};
+       int [] arr = {3,1,5,4,-2};
         bubbleSort(arr);
+        selectionSort(arr);
         System.out.println(Arrays.toString(arr));
 
     }
