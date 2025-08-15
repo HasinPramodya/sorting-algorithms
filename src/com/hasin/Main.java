@@ -53,14 +53,25 @@ public class Main {
     }
 
 public static void insertionSort(int [] arr){
-
+      for(int i=1;i< arr.length;i++){
+          int currentValue=arr[i];
+          int j=i-1;
+          while(j>=0 && arr[j]>currentValue){
+              arr[j+1]=arr[j];
+              j--;
+          }
+          arr[j+1]=currentValue;
+      }
 
 }
 
     public static void main(String[] args) {
-       int [] arr = {3,1,5,4,-2};
+       int [] arr = {3,1,5,4,2};
         bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));
         selectionSort(arr);
+        System.out.println(Arrays.toString(arr));
+        insertionSort(arr);
         System.out.println(Arrays.toString(arr));
 
     }
