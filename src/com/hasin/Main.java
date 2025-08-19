@@ -65,6 +65,10 @@ public static void insertionSort(int [] arr){
 
 }
 
+public static void mergeSort(){
+
+}
+
     public static void main(String[] args) {
        int [] arr = {3,1,5,4,2};
         bubbleSort(arr);
@@ -73,6 +77,7 @@ public static void insertionSort(int [] arr){
         System.out.println(Arrays.toString(arr));
         insertionSort(arr);
         System.out.println(Arrays.toString(arr));
+        mergeSort();
 
     }
 
