@@ -65,19 +65,72 @@ public static void insertionSort(int [] arr){
 
 }
 
-public static void mergeSort(){
+public static void mergeSort(int [] arr){
 
+        int inputLength = arr.length;
+        if(inputLength<2){
+            return;
+        }
+
+        int midIndex = inputLength/2;
+        int leftHalf [] = new int[midIndex]; //creating left half array
+        int rightHalf [] = new int[inputLength-midIndex]; //cretaing right half array
+
+        for(int i=0; i<midIndex; i++){ //coping original array element to left half array
+            leftHalf[i] = arr[i];
+        }
+        for(int i=midIndex; i<inputLength; i++){ //coping the original array element to right half array
+            rightHalf[i-midIndex]=arr[i];
+        }
+
+        mergeSort(leftHalf); //recursive sort leftHalf array until single element
+        mergeSort(rightHalf); //recursive sort rightHalf array until single element
+
+        merge(arr,leftHalf,rightHalf);
+}
+
+private static void merge(int arr[], int leftHalf[], int rightHalf[]){
+
+        int leftSize = leftHalf.length;
+        int rightSize = rightHalf.length;
+
+        int i=0, j=0, k=0; //creating iterator for leftHalf arr, rightHalf arr and original arr
+
+        while(i<leftSize&&j<rightSize){ //merging logic
+            if(leftHalf[i]<=rightHalf[j]){
+                arr[k]=leftHalf[i];
+                i++;
+            }else{
+                arr[k]=rightHalf[j];
+                j++;
+            }
+            k++;
+        }
+
+
+        while(i<leftSize){  //copy to original array if leftHalf array is having remaining element
+            arr[k]=leftHalf[i];
+            i++;
+            k++;
+        }
+
+        while(j<rightSize){ //copy to original array if rightHalf array is having remaining element
+            arr[k]=rightHalf[j];
+            j++;
+            k++;
+        }
 }
 
     public static void main(String[] args) {
-       int [] arr = {3,1,5,4,2};
+       int [] arr = {3,1,5,4,-2};
         bubbleSort(arr);
         System.out.println(Arrays.toString(arr));
         selectionSort(arr);
         System.out.println(Arrays.toString(arr));
         insertionSort(arr);
         System.out.println(Arrays.toString(arr));
-        mergeSort();
+        mergeSort(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 
